@@ -1,4 +1,12 @@
 <?php
+
+     session_start();
+
+        if (!isset($_SESSION["Login"])) {
+            header("Location: ./index.php");
+            exit;
+        }
+
     require 'functiondb.php';
     // $target_dir = "./assets/";
     // $target_file = $target_dir . basename($_FILES["gambar"]["name"]);

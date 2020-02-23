@@ -1,3 +1,13 @@
+     <?php
+     session_start();
+
+        if (!isset($_SESSION["Login"])) {
+            header("Location: ./index.php");
+            exit;
+        }
+        
+     ?>
+     
      <!-- var_dump("HAHAHAHAHAHA") ; For debugging purposes -->
      <!DOCTYPE html>
      <html lang="en">
@@ -10,7 +20,7 @@
      </head>
 
      <body>
-
+        <a href="./logout.php" style="display: flex; flex-direction= row;">Logout</a>
             <?php
                 $angka3 = [ [1, 4, 3]
                             ,[2, 5, 6, 7]
@@ -94,6 +104,6 @@
                     <!--   endfor  -->
                     
                 <input type="button" onclick="location.href = './functionnn.php';" value = "Function Page" class = "movingpagebutton">
-                <input type="button" onclick="location.href = './index.php';" value = "Logout" class = "movingpagebutton">
+                
      </body>
      </html>

@@ -1,5 +1,12 @@
-<?php 
-    if(!isset($_GET["Nama"]) || !isset($_GET["NIM"]) || !isset($_GET["Jurusan"]) || !isset($_GET["Email"])){
+<?php
+     session_start();
+
+        if (!isset($_SESSION["Login"])) {
+            header("Location: ./index.php");
+            exit;
+        }
+
+    if (!isset($_GET["Nama"]) || !isset($_GET["NIM"]) || !isset($_GET["Jurusan"]) || !isset($_GET["Email"])) {
         header("Location: ./daftarmhs.php");
         exit;
     }
@@ -16,7 +23,7 @@
 </head>
 <body>
     <font style="font-size: 24px; font-weight: bold; ">
-    <?php 
+    <?php
         // var_dump($_GET);
 
     ?>

@@ -1,12 +1,31 @@
 <?php
-    if (isset($_POST["submit"])) {
-        if ($_POST["username"] == "Evalkyrie" && $_POST["password"] == "PhPtesting123") {
-            header("Location: ./loggedin.php");
-            exit;
-        } else {
-            $error = true;
+    session_start();
+    require 'functiondb.php';
+
+    if (isset($_SESSION["Login"])) {
+        header("Location: ./loggedin.php");
+        exit;
+    }
+
+    if (isset($_POST["Login"])) {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+
+        //cek username
+
+        if (mysqli_num_rows($result) === 1) {
+            //cek password
+            $row = mysqli_fetch_assoc($result);
+            if (password_verify($password, $row["password"])) {
+                //set session
+                $_SESSION["Login"] = true;
+                header("Location: ./loggedin.php");
+                exit;
+            }
         }
-    } else {
+        $error = true;
     }
     // var_dump($error);
 ?>
@@ -28,12 +47,12 @@
     <?php endif; ?>
 
     <ul>
-    <form action="" method="post">
-        <li><label for="username">Username:<input type="text" name="username" id="username"></li></label> 
+    <form action="" method="post" style="list-style-type:none;">
+        <li><label for="username">Username:<input type="text" name="username" id="username" autocomplete="off"></li></label> 
         <br>
         <li><label for="username">Password:<input type="password" name="password" id="password"></li></label>
         <br>
-        <li style="overflow:hidden;"><input type="submit" name="submit" value="Login"></li>
+        <li style="overflow:hidden;"><input type="submit" name="Login" value="Login"></li>
         <br>
         <p>Don't have an account? </p><a href="./registrasi.php">Register Now!</a>
     </form>

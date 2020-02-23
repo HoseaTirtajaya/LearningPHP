@@ -1,3 +1,13 @@
+<?php
+     session_start();
+
+        if (!isset($_SESSION["Login"])) {
+            header("Location: ./index.php");
+            exit;
+        }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +82,7 @@
 
         // echo showmethod();
         echo "<br><br>";
-        // var_dump($_GET); 
+        // var_dump($_GET);
         ?>
     
 </body>

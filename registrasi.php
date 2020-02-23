@@ -1,4 +1,12 @@
 <?php
+
+     session_start();
+
+        if (!isset($_SESSION["Login"])) {
+            header("Location: ./index.php");
+            exit;
+        }
+
 require 'functiondb.php';
 
     if (isset($_POST["register"])) {
