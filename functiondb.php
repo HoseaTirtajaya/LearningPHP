@@ -1,12 +1,4 @@
 <?php
-
-     session_start();
-
-        if (!isset($_SESSION["Login"])) {
-            header("Location: ./index.php");
-            exit;
-        }
-
     $conn = mysqli_connect("localhost", "root", "", "mydatabase");
 
     function query($query)
