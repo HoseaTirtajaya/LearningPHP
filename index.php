@@ -1,6 +1,21 @@
 <?php
-    session_start();
     require 'functiondb.php';
+    session_start();
+
+    //cek cookie
+    if (isset($_COOKIE['logid']) && isset($_COOKIE['key'])) {
+        $id = $_COOKIE['logid'];
+        $key = $_COOKIE['key'];
+
+        //ambil username dari id
+        $result = mysqli_query($conn, "SELECT username FROM user WHERE id_user = $id;");
+        $row = mysqli_fetch_assoc($result);
+
+        //cek cookie dan username
+        if ($key === hash('sha256', $row['username'])) {
+            $_SESSION['Login'] = true;
+        }
+    }
 
     if (isset($_SESSION["Login"])) {
         header("Location: ./loggedin.php");
@@ -21,6 +36,13 @@
             if (password_verify($password, $row["password"])) {
                 //set session
                 $_SESSION["Login"] = true;
+
+                //cek remember me
+                if (isset($_POST["remember"])) {
+                    //buat cookie
+                    setcookie('logid', $row['id_user'], time()+300);
+                    setcookie('key', hash('sha256', $row['username']), time()+300);
+                }
                 header("Location: ./loggedin.php");
                 exit;
             }
@@ -51,6 +73,9 @@
         <li><label for="username">Username:<input type="text" name="username" id="username" autocomplete="off"></li></label> 
         <br>
         <li><label for="username">Password:<input type="password" name="password" id="password"></li></label>
+        <li>
+            <label for="remember"><input type="checkbox" name="remember" id="remember">Remember Me</label>
+        </li>
         <br>
         <li style="overflow:hidden;"><input type="submit" name="Login" value="Login"></li>
         <br>
