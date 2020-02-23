@@ -1,0 +1,77 @@
+.warna-baris-ganjil {
+  background-color: Yellow;
+}
+.warna-kolom-genap {
+  background-color: #add8e6;
+}
+.movingpagebutton {
+  background-color: aliceblue;
+  position: static;
+}
+
+.square1 {
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+  text-align: center;
+  line-height: 30px;
+  margin: 25px;
+  float: left;
+  transition: 0.9s;
+}
+
+.square1:hover {
+  transform: rotate(360deg);
+  border-radius: 50%;
+  list-style: under;
+}
+
+.clear {
+  clear: both;
+}
+
+.h1 {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.body {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+ul {
+  margin: 0px;
+}
+ul li {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+
+.submitbutton {
+  margin-left: 25px;
+  margin-right: 25px;
+  border-radius: 40%;
+  outline: none;
+}
+
+.submitbutton:hover {
+  border: 50%;
+}
+
+.admview {
+  position: absolute;
+  margin-left: 200px;
+  background-color: aqua;
+}
+
+table {
+  padding: 0px;
+}
+
+th {
+  color: red;
+}
